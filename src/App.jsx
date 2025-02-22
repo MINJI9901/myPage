@@ -24,12 +24,9 @@ function App() {
     sections.forEach((section) => {
       const top = section.offsetTop - 300;
       const height = section.clientHeight;
-      // console.log(top, height, top + height);
-      // console.log("now me: ", window.scrollY);
       if (window.scrollY > top && window.scrollY < top + height) {
         setCurrentSection(section);
       }
-      // console.log(currentSection);
     });
   };
 
