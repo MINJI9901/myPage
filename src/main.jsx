@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 
 // CONTEXT
-import { RefContext } from "../context/refContext";
+// import { RefContext } from "../context/refContext";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
