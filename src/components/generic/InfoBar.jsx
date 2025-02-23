@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 import theme from "../../theme/theme";
-import { RefContext } from "../context/refContext";
+import { RefContext } from "../context/RefContext";
 
 const steps = ["Home", "Projects", "About", "Contact"];
 
