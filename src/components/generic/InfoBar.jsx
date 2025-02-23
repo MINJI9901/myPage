@@ -19,7 +19,7 @@ export default function InfoBar({ current }) {
   const refs = useContext(RefContext);
 
   const [activeStep, setActiveStep] = useState(0);
-  const [completed, setCompleted] = useState({});
+  // const [completed, setCompleted] = useState({});
 
   // Handle clicking step to move section
   const handleClickStep = (step, index) => {
