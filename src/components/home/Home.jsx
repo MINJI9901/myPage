@@ -77,7 +77,7 @@ export default function Home() {
           <FontAwesomeIcon icon={faLinkedin} color="black" size="lg" />
         </a>
         <a
-          href="https://www.upwork.com/"
+          href="https://www.upwork.com/freelancers/~01656403c85083e26d"
           target="_blank"
           style={{ margin: "0 0.5rem" }}
         >
