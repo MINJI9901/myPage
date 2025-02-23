@@ -6,7 +6,7 @@ import { Box, Grid2 } from "@mui/material";
 import ThemeProvider from "./theme/ThemeProvider";
 
 // CONTEXT
-import { RefContext } from "../context/refContext";
+import { RefContext } from "@/context/RefContext";
 
 // MY COMPONENTS
 import NavBar from "./components/generic/NavBar";

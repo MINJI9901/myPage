@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 
 import theme from "../../theme/theme";
-import { RefContext } from "../../../context/refContext";
+import { RefContext } from "../context/refContext";
 
 import emailjs from "@emailjs/browser";
 
