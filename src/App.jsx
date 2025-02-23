@@ -16,6 +16,9 @@ import Projects from "./components/projects/Projects";
 import About from "./components/about/About";
 import Contact from "./components/contact/Contact";
 
+// // TOAST
+// import { ToastContainer } from "react-toastify";
+
 function App() {
   const [currentSection, setCurrentSection] = useState("");
 

@@ -1,77 +1,137 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
+// MUI
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 
+// THEME
 import theme from "../../theme/theme";
+
+// CONTEXTS
 import { RefContext } from "../../context/RefContext";
 
+// EMAILJS
 import emailjs from "@emailjs/browser";
+
+// TOAST
+import { toast } from "react-toastify";
+
+// UUID
+import { v4 as uuid } from "uuid";
 
 export default function Contact() {
   const { palette } = useTheme(theme);
   const { Contact } = useContext(RefContext);
 
-  const [formData, setFormData] = useState({
+  let errorObject = {};
+  const emailRegex = /^.+@.+\..+$/;
+
+  const initialData = {
     firstName: "",
     lastName: "",
     email: "",
     title: "",
     message: "",
-  });
+  };
+
+  const [formData, setFormData] = useState(initialData);
+  const [inputError, setInputError] = useState({});
 
   const handleInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    console.log("form data: ", formData);
   };
 
-  //   document.addEventListener("DOMContentLoaded", function () {
-  //     emailjs.init({ publicKey: "V7vK0o8X7SKZHV83X" });
+  const checkInput = () => {
+    errorObject["firstName"] = formData.firstName.length
+      ? false
+      : "First name is required";
+    errorObject["lastName"] = formData.lastName.length
+      ? false
+      : "Last name is required";
+    errorObject["email"] =
+      formData.email.length && emailRegex.test(formData.email)
+        ? false
+        : "Please, type valid email";
+    errorObject["message"] =
+      formData.message.length > 10
+        ? false
+        : "Please, type at least 10 charactors";
 
-  //     document
-  //       .getElementById("contact-form")
-  //       .addEventListener("submit", function (event) {
-  //         event.preventDefault();
+    console.log("error object: ", errorObject);
 
-  //         emailjs.sendForm("service_9x6bxkk", "template_uahx7l9", this).then(
-  //           () => {
-  //             console.log("SUCCESS!");
-  //             alert("Your message has been sent successfully!"); // Add user feedback
-  //           },
-  //           (error) => {
-  //             console.error("FAILED...", error);
-  //             alert("Oops! Something went wrong. Please try again."); // Better error handling
-  //           }
-  //         );
-  //       });
-  //   });
+    setInputError(() => ({ ...errorObject }));
+  };
+
+  const ToastMsg = ({ title, content }) => {
+    return (
+      <Box
+        textAlign="center"
+        m="0.5rem"
+        backgroundColor={palette.grey[50]}
+        // border={`1px soild ${palette.primary.main}`}
+        // borderRadius={"10px"}
+      >
+        <Typography fontWeight={700} color={palette.primary.dark}>
+          {title}
+        </Typography>
+        <Typography m={"10px"}>{content}</Typography>
+      </Box>
+    );
+  };
 
   const sendEmail = () => {
-    console.log("sending email...");
-    console.log(formData);
+    checkInput();
 
-    emailjs.init({ publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY });
-    document
-      .getElementById("contact-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        // these IDs from the previous steps
-        emailjs
-          .sendForm(
-            import.meta.env.VITE_EMAILJS_SERVICE_ID,
-            import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-            this
-          )
-          .then(
-            (res) => {
-              console.log("SUCCESS!: ", res);
-            },
-            (error) => {
-              console.log("FAILED...", error);
-            }
-          );
-      });
+    console.log(
+      Object.values(errorObject).filter((value) => value === false).length === 4
+    );
+    if (
+      Object.values(errorObject).filter((value) => value === false).length === 4
+    ) {
+      console.log("sending email...");
+
+      emailjs.init({ publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY });
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          // these IDs from the previous steps
+          emailjs
+            .sendForm(
+              import.meta.env.VITE_EMAILJS_SERVICE_ID,
+              import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+              this
+            )
+            .then(
+              (res) => {
+                console.log("SUCCESS!: ", res);
+
+                // toast("hello");
+                const idForToast = uuid();
+
+                toast(
+                  <ToastMsg
+                    title={`🖐️ Hello ${formData.firstName} !`}
+                    content={"Successfully Delivered Your Message To MINJI!"}
+                  />,
+                  {
+                    toastId: idForToast,
+                    hideProgressBar: true,
+                  }
+                );
+
+                setFormData(initialData);
+              },
+              (error) => {
+                console.log("FAILED...", error);
+
+                setFormData(initialData);
+              }
+            );
+        });
+
+      setInputError({});
+    }
   };
 
   return (
@@ -103,9 +163,19 @@ export default function Contact() {
           padding: "2rem",
           margin: "7rem auto",
         }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          sendEmail();
+        }}
       >
         <Box sx={{ display: "flex", gap: "6%", my: "2rem" }}>
           <TextField
+            error={inputError.firstName && !formData.firstName ? true : false}
+            helperText={
+              inputError.firstName && !formData.firstName
+                ? inputError.firstName
+                : false
+            }
             label="First Name"
             sx={{ width: "47%" }}
             name="firstName"
@@ -113,6 +183,12 @@ export default function Contact() {
             onChange={handleInput}
           ></TextField>
           <TextField
+            error={inputError.lastName && !formData.lastName ? true : false}
+            helperText={
+              inputError.lastName && !formData.lastName
+                ? inputError.lastName
+                : false
+            }
             label="Last Name"
             sx={{ width: "47%" }}
             name="lastName"
@@ -123,6 +199,16 @@ export default function Contact() {
         <Box sx={{ my: "2rem" }}>
           <TextField
             fullWidth
+            error={
+              inputError.email && !emailRegex.test(formData.email)
+                ? true
+                : false
+            }
+            helperText={
+              inputError.email && !emailRegex.test(formData.email)
+                ? inputError.email
+                : false
+            }
             label="E-mail Address"
             name="email"
             value={formData.email}
@@ -140,8 +226,18 @@ export default function Contact() {
         </Box>
         <Box sx={{ my: "2rem" }}>
           <TextField
-            label="Whatever You Want To Say..."
             fullWidth
+            error={
+              inputError.message && !(formData.message.length > 10)
+                ? true
+                : false
+            }
+            helperText={
+              inputError.message && !(formData.message.length > 10)
+                ? inputError.message
+                : false
+            }
+            label="Whatever You Want To Say..."
             multiline
             rows={5}
             name="message"
@@ -153,7 +249,7 @@ export default function Contact() {
           type="submit"
           variant="outlined"
           sx={{ borderColor: palette.primary.main, padding: "0.5rem 2rem" }}
-          onClick={sendEmail}
+          // onClick={sendEmail}
         >
           Send Message
         </Button>
