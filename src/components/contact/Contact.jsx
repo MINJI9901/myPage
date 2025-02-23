@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 
@@ -10,6 +10,21 @@ import emailjs from "@emailjs/browser";
 export default function Contact() {
   const { palette } = useTheme(theme);
   const { Contact } = useContext(RefContext);
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    title: "",
+    message: "",
+  });
+
+  const handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    console.log("form data: ", formData);
+  };
 
   //   document.addEventListener("DOMContentLoaded", function () {
   //     emailjs.init({ publicKey: "V7vK0o8X7SKZHV83X" });
@@ -33,20 +48,29 @@ export default function Contact() {
   //   });
 
   const sendEmail = () => {
-    emailjs.init({ publicKey: "V7vK0o8X7SKZHV83X" });
+    console.log("sending email...");
+    console.log(formData);
+
+    emailjs.init({ publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY });
     document
       .getElementById("contact-form")
       .addEventListener("submit", function (event) {
         event.preventDefault();
         // these IDs from the previous steps
-        emailjs.sendForm("service_9x6bxkk", "template_uahx7l9", this).then(
-          () => {
-            console.log("SUCCESS!");
-          },
-          (error) => {
-            console.log("FAILED...", error);
-          }
-        );
+        emailjs
+          .sendForm(
+            import.meta.env.VITE_EMAILJS_SERVICE_ID,
+            import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+            this
+          )
+          .then(
+            (res) => {
+              console.log("SUCCESS!: ", res);
+            },
+            (error) => {
+              console.log("FAILED...", error);
+            }
+          );
       });
   };
 
@@ -81,14 +105,38 @@ export default function Contact() {
         }}
       >
         <Box sx={{ display: "flex", gap: "6%", my: "2rem" }}>
-          <TextField label="First Name" sx={{ width: "47%" }}></TextField>
-          <TextField label="Last Name" sx={{ width: "47%" }}></TextField>
+          <TextField
+            label="First Name"
+            sx={{ width: "47%" }}
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleInput}
+          ></TextField>
+          <TextField
+            label="Last Name"
+            sx={{ width: "47%" }}
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleInput}
+          ></TextField>
         </Box>
         <Box sx={{ my: "2rem" }}>
-          <TextField label="E-mail Address" fullWidth></TextField>
+          <TextField
+            fullWidth
+            label="E-mail Address"
+            name="email"
+            value={formData.email}
+            onChange={handleInput}
+          ></TextField>
         </Box>
         <Box sx={{ my: "2rem" }}>
-          <TextField label="Title" fullWidth></TextField>
+          <TextField
+            fullWidth
+            label="Title"
+            name="title"
+            value={formData.title}
+            onChange={handleInput}
+          ></TextField>
         </Box>
         <Box sx={{ my: "2rem" }}>
           <TextField
@@ -96,6 +144,9 @@ export default function Contact() {
             fullWidth
             multiline
             rows={5}
+            name="message"
+            value={formData.message}
+            onChange={handleInput}
           ></TextField>
         </Box>
         <Button
