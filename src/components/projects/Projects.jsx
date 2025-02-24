@@ -1,36 +1,72 @@
 import { useContext, useEffect, useRef } from "react";
-
-import {
-  Box,
-  Container,
-  Grid2,
-  Typography,
-  Link,
-  useTheme,
-} from "@mui/material";
-
+// MUI
+import { Box, Button, Grid2, Typography, Link, useTheme } from "@mui/material";
+// THEME
 import theme from "../../theme/theme";
+// CONTEXT
 import { RefContext } from "../../context/RefContext";
+// COMPONENTS
+import LogoGrid from "../generic/LogoGrid";
+
+// REACT-ICONS
+import {
+  FaReact,
+  FaCss3Alt,
+  FaHtml5,
+  FaBootstrap,
+  FaNodeJs,
+} from "react-icons/fa";
+import { TbBrandNextjs } from "react-icons/tb";
+import { IoLogoJavascript } from "react-icons/io5";
+import {
+  SiMui,
+  SiTailwindcss,
+  SiExpress,
+  SiMongodb,
+  SiSupabase,
+} from "react-icons/si";
+
+const skillLogos = {
+  React: <FaReact />,
+  NextJs: <TbBrandNextjs />,
+  JavaScript: <IoLogoJavascript />,
+  CSS: <FaCss3Alt />,
+  HTML: <FaHtml5 />,
+  "Material UI": <SiMui />,
+  Bootstrap: <FaBootstrap />,
+  Tailwindcss: <SiTailwindcss />,
+  NodeJs: <FaNodeJs />,
+  ExpressJs: <SiExpress />,
+  MongoDB: <SiMongodb />,
+  Supabase: <SiSupabase />,
+};
 
 const projects = [
-  //   {
-  //     name: "Farm Story",
-  //     description:
-  //       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cumque unde officiis minima distinctio quibusdam, ut veritatis vel animi. Reprehenderit ratione odio id aspernatur omnis autem ex minima. Velit, dolores?",
-  //     tools: [],
-  //     file: "",
-  //     link: "",
-  //     gitLink: "",
-  //   },
   {
     name: "Expenser",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cumque unde officiis minima distinctio quibusdam, ut veritatis vel animi. Reprehenderit ratione odio id aspernatur omnis autem ex minima. Velit, dolores?",
-    tools: [],
+      "You want to manage your money flow in an efficient way? Here, you can manage financial input/output together! We allow you see how you are using your money at a glance.",
+    tools: [
+      "React",
+      "NextJs",
+      "JavaScript",
+      "Material UI",
+      "MongoDB",
+      "Supabase",
+    ],
     file: "",
     link: "https://expense-tracker-puce-mu.vercel.app/",
     gitLink: "https://github.com/MINJI9901/ExpenseTracker",
   },
+  // {
+  //   name: "Farm Story",
+  //   description:
+  //     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cumque unde officiis minima distinctio quibusdam, ut veritatis vel animi. Reprehenderit ratione odio id aspernatur omnis autem ex minima. Velit, dolores?",
+  //   tools: [],
+  //   file: "",
+  //   link: "",
+  //   gitLink: "",
+  // },
 ];
 
 export default function Projects() {
@@ -81,23 +117,19 @@ export default function Projects() {
       position={"relative"}
       zIndex={1}
     >
-      {/* <img
-        ref={rabbit}
-        src="/rabbit.png"
-        alt=""
-        style={{ width: "7%", position: "absolute", top: "-5%" }}
-      /> */}
-      <Grid2 container sx={{ justifyContent: "center", my: "10rem" }}>
+      <Grid2 container justifyContent={"center"} my={"10rem"} spacing={7}>
         {projects.map((project) => (
           <Grid2
-            size={5}
+            size={{ xs: 12, sm: 9, md: 6 }}
+            minWidth={"23rem"}
+            maxWidth={"28rem"}
             id="project-container"
             key={project.name}
             sx={{
               backgroundColor: palette.common.lightGray,
               borderRadius: "0.3rem",
               padding: "2rem",
-              margin: "2rem",
+              margin: "2rem 0",
             }}
           >
             <Box
@@ -123,15 +155,37 @@ export default function Projects() {
             </Box>
             <Box>
               <Typography sx={{ my: "1rem" }}>{project.name}</Typography>
-              <Typography>{project.description}</Typography>
+              <Typography textAlign={"left"}>{project.description}</Typography>
             </Box>
-            <Box sx={{ mt: "2rem" }}>
-              <Link href={project.link} target="_blank" sx={{ mx: "1rem" }}>
+            <Box m={"1rem"} fontSize={"1.5rem"}>
+              <LogoGrid logoNames={project.tools} displayName={false} />
+            </Box>
+            <Box>
+              <Button
+                href={project.link}
+                target="_blank"
+                mx="1rem"
+                sx={{
+                  textDecoration: "underline wavy 2px",
+                  textUnderlineOffset: "5px",
+                  mx: "1rem",
+                  "&:hover": { bgcolor: palette.primary.main, color: "white" },
+                }}
+              >
                 Live
-              </Link>
-              <Link href={project.gitLink} target="_blank" sx={{ mx: "1rem" }}>
+              </Button>
+              <Button
+                href={project.gitLink}
+                target="_blank"
+                sx={{
+                  textDecoration: "underline wavy 2px",
+                  textUnderlineOffset: "5px",
+                  mx: "1rem",
+                  "&:hover": { bgcolor: palette.primary.main, color: "white" },
+                }}
+              >
                 Code
-              </Link>
+              </Button>
             </Box>
           </Grid2>
         ))}

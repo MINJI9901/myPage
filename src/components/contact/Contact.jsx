@@ -1,20 +1,14 @@
 import { useContext, useState, useEffect } from "react";
-
 // MUI
 import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
-
 // THEME
 import theme from "../../theme/theme";
-
 // CONTEXTS
 import { RefContext } from "../../context/RefContext";
-
 // EMAILJS
 import emailjs from "@emailjs/browser";
-
 // TOAST
 import { toast } from "react-toastify";
-
 // UUID
 import { v4 as uuid } from "uuid";
 
@@ -159,7 +153,7 @@ export default function Contact() {
           border: "1px solid",
           borderRadius: "1rem",
           borderColor: palette.common.lightGray,
-          width: "60%",
+          width: { xs: "25rem", sm: "80%", lg: "70%" },
           padding: "2rem",
           margin: "7rem auto",
         }}
@@ -168,7 +162,7 @@ export default function Contact() {
           sendEmail();
         }}
       >
-        <Box sx={{ display: "flex", gap: "6%", my: "2rem" }}>
+        <Box sx={{ display: "flex", gap: "6%", my: "1rem" }}>
           <TextField
             error={inputError.firstName && !formData.firstName ? true : false}
             helperText={
@@ -177,6 +171,7 @@ export default function Contact() {
                 : false
             }
             label="First Name"
+            size="small"
             sx={{ width: "47%" }}
             name="firstName"
             value={formData.firstName}
@@ -190,13 +185,14 @@ export default function Contact() {
                 : false
             }
             label="Last Name"
+            size="small"
             sx={{ width: "47%" }}
             name="lastName"
             value={formData.lastName}
             onChange={handleInput}
           ></TextField>
         </Box>
-        <Box sx={{ my: "2rem" }}>
+        <Box sx={{ my: "1rem" }}>
           <TextField
             fullWidth
             error={
@@ -210,21 +206,23 @@ export default function Contact() {
                 : false
             }
             label="E-mail Address"
+            size="small"
             name="email"
             value={formData.email}
             onChange={handleInput}
           ></TextField>
         </Box>
-        <Box sx={{ my: "2rem" }}>
+        <Box sx={{ my: "1rem" }}>
           <TextField
             fullWidth
             label="Title"
+            size="small"
             name="title"
             value={formData.title}
             onChange={handleInput}
           ></TextField>
         </Box>
-        <Box sx={{ my: "2rem" }}>
+        <Box sx={{ my: "1rem" }}>
           <TextField
             fullWidth
             error={
@@ -238,6 +236,7 @@ export default function Contact() {
                 : false
             }
             label="Whatever You Want To Say..."
+            size="small"
             multiline
             rows={5}
             name="message"

@@ -44,6 +44,7 @@ function App() {
   return (
     <>
       <ThemeProvider>
+        <NavBar />
         <RefContext.Provider
           value={{
             Home: useRef(null),
@@ -52,16 +53,15 @@ function App() {
             Contact: useRef(null),
           }}
         >
-          <NavBar />
           <Grid2 container mx={"2rem"}>
-            <Grid2 size={10}>
+            <Grid2 size={{ xs: 12, md: 10 }}>
               <video
                 autoPlay
                 loop
                 muted
                 style={{
                   width: "100%",
-                  height: "100%",
+                  height: "100vh",
                   objectFit: "cover",
                   position: "absolute",
                   top: 0,
@@ -77,7 +77,7 @@ function App() {
               <About />
               <Contact />
             </Grid2>
-            <Grid2 size={2}>
+            <Grid2 size={2} display={{ xs: "none", md: "block" }}>
               <InfoBar current={currentSection} />
             </Grid2>
           </Grid2>
