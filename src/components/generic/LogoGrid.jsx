@@ -1,5 +1,7 @@
 // MUI
-import { Box, Grid2, Typography } from "@mui/material";
+import { Box, Grid2, Typography, Tooltip } from "@mui/material";
+import { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
 // REACT-ICONS
 import {
   FaReact,
@@ -33,20 +35,38 @@ const skillLogos = {
   Supabase: <SiSupabase />,
 };
 
-export default function LogoGrid({ logoNames, displayName }) {
+export default function LogoGrid({ logoNames, displayName, color }) {
+  const LightTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.white,
+      color: "rgba(0, 0, 0, 0.8)",
+      boxShadow: theme.shadows[1],
+      fontSize: 11,
+    },
+  }));
+
   return (
     <Grid2 container spacing={1}>
       {logoNames.map((name, idx) => (
-        <Grid2 size={{ xs: 4, lg: 3 }} key={idx} display={"inline-block"}>
-          {skillLogos[name]}
-          {displayName ? (
-            <Typography fontSize={{ xs: "0.8rem", lg: "0.9rem" }}>
-              {name}
-            </Typography>
-          ) : (
-            ""
-          )}
-        </Grid2>
+        <LightTooltip key={idx} title={name}>
+          <Grid2
+            size={{ xs: 4, lg: 3 }}
+            key={idx}
+            color={color ? color : "black"}
+            display={"inline-block"}
+          >
+            {skillLogos[name]}
+            {displayName ? (
+              <Typography fontSize={{ xs: "0.8rem", lg: "0.9rem" }}>
+                {name}
+              </Typography>
+            ) : (
+              ""
+            )}
+          </Grid2>
+        </LightTooltip>
       ))}
     </Grid2>
   );

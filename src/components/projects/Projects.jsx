@@ -7,7 +7,6 @@ import theme from "../../theme/theme";
 import { RefContext } from "../../context/RefContext";
 // COMPONENTS
 import LogoGrid from "../generic/LogoGrid";
-
 // REACT-ICONS
 import {
   FaReact,
@@ -25,6 +24,8 @@ import {
   SiMongodb,
   SiSupabase,
 } from "react-icons/si";
+// FILE
+import expenserPoster from "../../../public/expense_screenshot.png";
 
 const skillLogos = {
   React: <FaReact />,
@@ -140,31 +141,40 @@ export default function Projects() {
                 // objectFit: "contain",
               }}
             >
-              <video
-                autoPlay
-                loop
-                muted
-                poster="https://assets.codepen.io/6093409/river.jpg"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              >
-                <source
-                  src="https://assets.codepen.io/6093409/river.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              {project.file ? (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  poster="/expense_screenshot.png"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                >
+                  <source src={file} type="video/mp4" />
+                </video>
+              ) : (
+                <img
+                  src="/expense_screenshot.png"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                ></img>
+              )}
             </Box>
             <Box>
-              <Typography sx={{ my: "1rem" }}>{project.name}</Typography>
+              <Typography fontWeight={700} my={"1rem"}>
+                {project.name}
+              </Typography>
               <Typography textAlign={"left"}>{project.description}</Typography>
             </Box>
             <Box m={"1rem"} fontSize={"1.5rem"}>
-              <LogoGrid logoNames={project.tools} displayName={false} />
+              <LogoGrid
+                logoNames={project.tools}
+                displayName={false}
+                color={palette.secondary.light}
+              />
             </Box>
             <Box>
               <Button
                 href={project.link}
                 target="_blank"
-                mx="1rem"
                 sx={{
                   textDecoration: "underline wavy 2px",
                   textUnderlineOffset: "5px",
@@ -172,7 +182,7 @@ export default function Projects() {
                   "&:hover": { bgcolor: palette.primary.main, color: "white" },
                 }}
               >
-                Live
+                Try Me
               </Button>
               <Button
                 href={project.gitLink}
