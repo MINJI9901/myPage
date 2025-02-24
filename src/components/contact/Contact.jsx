@@ -153,7 +153,7 @@ export default function Contact() {
           border: "1px solid",
           borderRadius: "1rem",
           borderColor: palette.common.lightGray,
-          width: { xs: "25rem", sm: "80%", lg: "70%" },
+          width: { xs: "100%", sm: "80%", lg: "70%" },
           padding: "2rem",
           margin: "7rem auto",
         }}
