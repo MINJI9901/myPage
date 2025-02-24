@@ -53,7 +53,7 @@ function App() {
             Contact: useRef(null),
           }}
         >
-          <Grid2 container mx={"2rem"}>
+          <Grid2 container mx={"2rem 0"}>
             <Grid2 size={{ xs: 12, md: 10 }}>
               <video
                 autoPlay

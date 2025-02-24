@@ -33,7 +33,7 @@ export default function About() {
         borderRadius: "1rem",
         textAlign: "left",
         padding: { xs: "0.5rem", lg: "0.5rem 2rem" },
-        margin: { xs: "7rem 0", sm: "7rem auto" },
+        margin: "7rem auto",
         zIndex: 1,
       }}
     >
