@@ -24,8 +24,8 @@ import {
   SiMongodb,
   SiSupabase,
 } from "react-icons/si";
-// FILE
-import expenserPoster from "../../../public/expense_screenshot.png";
+
+import AppearingMotion from "../generic/AppearingMotion";
 
 const skillLogos = {
   React: <FaReact />,
@@ -55,7 +55,7 @@ const projects = [
       "MongoDB",
       "Supabase",
     ],
-    file: "",
+    file: "/expenser_recording.mp4",
     link: "https://expense-tracker-puce-mu.vercel.app/",
     gitLink: "https://github.com/MINJI9901/ExpenseTracker",
   },
@@ -73,7 +73,6 @@ const projects = [
 export default function Projects() {
   const { palette } = useTheme(theme);
   const { Projects } = useContext(RefContext);
-  const rabbit = useRef(null);
 
   //   const rabbitMoving = () => {
   //     const projectContainer = document.querySelector("#project-container");
@@ -111,95 +110,113 @@ export default function Projects() {
   //   }, []);
 
   return (
-    <Box
-      id="Projects"
-      ref={Projects}
-      className="section"
-      position={"relative"}
-      zIndex={1}
-    >
-      <Grid2 container justifyContent={"center"} my={"10rem"} spacing={7}>
-        {projects.map((project) => (
-          <Grid2
-            size={{ xs: 12, sm: 9, md: 6 }}
-            minWidth={"23rem"}
-            maxWidth={"28rem"}
-            id="project-container"
-            key={project.name}
-            sx={{
-              backgroundColor: palette.common.lightGray,
-              borderRadius: "0.3rem",
-              padding: "2rem",
-              margin: "2rem 0",
-            }}
-          >
-            <Box
+    <AppearingMotion>
+      <Box
+        id="Projects"
+        ref={Projects}
+        className="section"
+        position={"relative"}
+        zIndex={1}
+      >
+        <Grid2 container justifyContent={"center"} py={"6rem"} spacing={7}>
+          {projects.map((project) => (
+            <Grid2
+              size={{ xs: 12, sm: 9, md: 6 }}
+              minWidth={"23rem"}
+              maxWidth={"28rem"}
+              id="project-container"
+              key={project.name}
               sx={{
-                backgroundColor: palette.primary.main,
+                backgroundColor: palette.common.lightGray,
                 borderRadius: "0.3rem",
-                height: "15rem",
-                // objectFit: "contain",
+                padding: "2rem",
+                margin: "2rem 0",
               }}
             >
-              {project.file ? (
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  poster="/expense_screenshot.png"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              <Box
+                sx={{
+                  backgroundColor: palette.primary.main,
+                  borderRadius: "0.3rem",
+                  height: "15rem",
+                  // objectFit: "contain",
+                }}
+              >
+                {project.file ? (
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    // poster="/expense_screenshot.png"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  >
+                    <source src={project.file} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img
+                    src="/expense_screenshot.png"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  ></img>
+                )}
+              </Box>
+              <Box>
+                <Typography fontWeight={700} my={"1rem"}>
+                  {project.name}
+                </Typography>
+                <Typography textAlign={"left"}>
+                  {project.description}
+                </Typography>
+              </Box>
+              <Box m={"1rem"} fontSize={"1.5rem"}>
+                <LogoGrid
+                  logoNames={project.tools}
+                  displayName={false}
+                  color={palette.secondary.light}
+                />
+              </Box>
+              <Box>
+                <Button
+                  href={project.link}
+                  target="_blank"
+                  sx={{
+                    textDecoration: "underline wavy 2px",
+                    textUnderlineOffset: "5px",
+                    mx: "1rem",
+                    "&:hover": {
+                      bgcolor: palette.primary.main,
+                      color: "white",
+                    },
+                  }}
                 >
-                  <source src={file} type="video/mp4" />
-                </video>
-              ) : (
-                <img
-                  src="/expense_screenshot.png"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                ></img>
-              )}
-            </Box>
-            <Box>
-              <Typography fontWeight={700} my={"1rem"}>
-                {project.name}
-              </Typography>
-              <Typography textAlign={"left"}>{project.description}</Typography>
-            </Box>
-            <Box m={"1rem"} fontSize={"1.5rem"}>
-              <LogoGrid
-                logoNames={project.tools}
-                displayName={false}
-                color={palette.secondary.light}
-              />
-            </Box>
-            <Box>
-              <Button
-                href={project.link}
-                target="_blank"
-                sx={{
-                  textDecoration: "underline wavy 2px",
-                  textUnderlineOffset: "5px",
-                  mx: "1rem",
-                  "&:hover": { bgcolor: palette.primary.main, color: "white" },
-                }}
-              >
-                Try Me
-              </Button>
-              <Button
-                href={project.gitLink}
-                target="_blank"
-                sx={{
-                  textDecoration: "underline wavy 2px",
-                  textUnderlineOffset: "5px",
-                  mx: "1rem",
-                  "&:hover": { bgcolor: palette.primary.main, color: "white" },
-                }}
-              >
-                Code
-              </Button>
-            </Box>
-          </Grid2>
-        ))}
-      </Grid2>
-    </Box>
+                  Try Me
+                </Button>
+                <Button
+                  href={project.gitLink}
+                  target="_blank"
+                  sx={{
+                    textDecoration: "underline wavy 2px",
+                    textUnderlineOffset: "5px",
+                    mx: "1rem",
+                    "&:hover": {
+                      bgcolor: palette.primary.main,
+                      color: "white",
+                    },
+                  }}
+                >
+                  Code
+                </Button>
+              </Box>
+            </Grid2>
+          ))}
+        </Grid2>
+      </Box>
+    </AppearingMotion>
   );
 }

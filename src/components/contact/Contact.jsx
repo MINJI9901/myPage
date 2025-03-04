@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 // UUID
 import { v4 as uuid } from "uuid";
 
+import AppearingMotion from "../generic/AppearingMotion";
+
 export default function Contact() {
   const { palette } = useTheme(theme);
   const { Contact } = useContext(RefContext);
@@ -129,130 +131,132 @@ export default function Contact() {
   };
 
   return (
-    <Box id="Contact" ref={Contact} className="section" pb={"5rem"}>
-      <Typography
-        variant="h2"
-        sx={{
-          position: "relative",
-          top: "8rem",
-          backgroundColor: "white",
-          width: "fit-content",
-          height: "fit-content",
-          fontSize: "2rem",
-          px: "0.5rem",
-          mx: "auto",
-          zIndex: 1,
-        }}
-      >
-        Contact
-      </Typography>
-      <Box
-        component={"form"}
-        id="contact-form"
-        sx={{
-          border: "1px solid",
-          borderRadius: "1rem",
-          borderColor: palette.common.lightGray,
-          width: { xs: "100%", sm: "80%", lg: "70%" },
-          padding: "2rem",
-          margin: "7rem auto",
-        }}
-        onSubmit={(e) => {
-          e.preventDefault();
-          sendEmail();
-        }}
-      >
-        <Box sx={{ display: "flex", gap: "6%", my: "1rem" }}>
-          <TextField
-            error={inputError.firstName && !formData.firstName ? true : false}
-            helperText={
-              inputError.firstName && !formData.firstName
-                ? inputError.firstName
-                : false
-            }
-            label="First Name"
-            size="small"
-            sx={{ width: "47%" }}
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleInput}
-          ></TextField>
-          <TextField
-            error={inputError.lastName && !formData.lastName ? true : false}
-            helperText={
-              inputError.lastName && !formData.lastName
-                ? inputError.lastName
-                : false
-            }
-            label="Last Name"
-            size="small"
-            sx={{ width: "47%" }}
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleInput}
-          ></TextField>
-        </Box>
-        <Box sx={{ my: "1rem" }}>
-          <TextField
-            fullWidth
-            error={
-              inputError.email && !emailRegex.test(formData.email)
-                ? true
-                : false
-            }
-            helperText={
-              inputError.email && !emailRegex.test(formData.email)
-                ? inputError.email
-                : false
-            }
-            label="E-mail Address"
-            size="small"
-            name="email"
-            value={formData.email}
-            onChange={handleInput}
-          ></TextField>
-        </Box>
-        <Box sx={{ my: "1rem" }}>
-          <TextField
-            fullWidth
-            label="Title"
-            size="small"
-            name="title"
-            value={formData.title}
-            onChange={handleInput}
-          ></TextField>
-        </Box>
-        <Box sx={{ my: "1rem" }}>
-          <TextField
-            fullWidth
-            error={
-              inputError.message && !(formData.message.length > 10)
-                ? true
-                : false
-            }
-            helperText={
-              inputError.message && !(formData.message.length > 10)
-                ? inputError.message
-                : false
-            }
-            label="Whatever You Want To Say..."
-            size="small"
-            multiline
-            rows={5}
-            name="message"
-            value={formData.message}
-            onChange={handleInput}
-          ></TextField>
-        </Box>
-        <Button
-          type="submit"
-          variant="outlined"
-          sx={{ borderColor: palette.primary.main, padding: "0.5rem 2rem" }}
-          // onClick={sendEmail}
+    <AppearingMotion>
+      <Box id="Contact" ref={Contact} className="section" pb={"5rem"}>
+        <Typography
+          variant="h2"
+          sx={{
+            position: "relative",
+            top: "8rem",
+            backgroundColor: "white",
+            width: "fit-content",
+            height: "fit-content",
+            fontSize: "2rem",
+            px: "0.5rem",
+            mx: "auto",
+            zIndex: 1,
+          }}
         >
-          Send Message
-        </Button>
+          Contact
+        </Typography>
+        <Box
+          component={"form"}
+          id="contact-form"
+          sx={{
+            border: "1px solid",
+            borderRadius: "1rem",
+            borderColor: palette.common.lightGray,
+            width: { xs: "100%", sm: "80%", lg: "70%" },
+            padding: "2rem",
+            margin: "7rem auto",
+          }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendEmail();
+          }}
+        >
+          <Box sx={{ display: "flex", gap: "6%", my: "1rem" }}>
+            <TextField
+              error={inputError.firstName && !formData.firstName ? true : false}
+              helperText={
+                inputError.firstName && !formData.firstName
+                  ? inputError.firstName
+                  : false
+              }
+              label="First Name"
+              size="small"
+              sx={{ width: "47%" }}
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleInput}
+            ></TextField>
+            <TextField
+              error={inputError.lastName && !formData.lastName ? true : false}
+              helperText={
+                inputError.lastName && !formData.lastName
+                  ? inputError.lastName
+                  : false
+              }
+              label="Last Name"
+              size="small"
+              sx={{ width: "47%" }}
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleInput}
+            ></TextField>
+          </Box>
+          <Box sx={{ my: "1rem" }}>
+            <TextField
+              fullWidth
+              error={
+                inputError.email && !emailRegex.test(formData.email)
+                  ? true
+                  : false
+              }
+              helperText={
+                inputError.email && !emailRegex.test(formData.email)
+                  ? inputError.email
+                  : false
+              }
+              label="E-mail Address"
+              size="small"
+              name="email"
+              value={formData.email}
+              onChange={handleInput}
+            ></TextField>
+          </Box>
+          <Box sx={{ my: "1rem" }}>
+            <TextField
+              fullWidth
+              label="Title"
+              size="small"
+              name="title"
+              value={formData.title}
+              onChange={handleInput}
+            ></TextField>
+          </Box>
+          <Box sx={{ my: "1rem" }}>
+            <TextField
+              fullWidth
+              error={
+                inputError.message && !(formData.message.length > 10)
+                  ? true
+                  : false
+              }
+              helperText={
+                inputError.message && !(formData.message.length > 10)
+                  ? inputError.message
+                  : false
+              }
+              label="Whatever You Want To Say..."
+              size="small"
+              multiline
+              rows={5}
+              name="message"
+              value={formData.message}
+              onChange={handleInput}
+            ></TextField>
+          </Box>
+          <Button
+            type="submit"
+            variant="outlined"
+            sx={{ borderColor: palette.primary.main, padding: "0.5rem 2rem" }}
+            // onClick={sendEmail}
+          >
+            Send Message
+          </Button>
+        </Box>
       </Box>
-    </Box>
+    </AppearingMotion>
   );
 }
