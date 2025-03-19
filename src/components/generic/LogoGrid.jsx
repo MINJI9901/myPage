@@ -13,6 +13,7 @@ import {
 import { TbBrandNextjs } from "react-icons/tb";
 import { IoLogoJavascript } from "react-icons/io5";
 import {
+  SiTypescript,
   SiMui,
   SiTailwindcss,
   SiExpress,
@@ -24,6 +25,7 @@ const skillLogos = {
   React: <FaReact />,
   NextJs: <TbBrandNextjs />,
   JavaScript: <IoLogoJavascript />,
+  TypeScript: <SiTypescript />,
   CSS: <FaCss3Alt />,
   HTML: <FaHtml5 />,
   "Material UI": <SiMui />,

@@ -9,7 +9,7 @@ export default function SkillStack() {
   const frontendSkill = [
     "React",
     "NextJs",
-    "JavaScript",
+    "TypeScript",
     "CSS",
     "HTML",
     "Material UI",

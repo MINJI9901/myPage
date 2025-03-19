@@ -18,6 +18,7 @@ import {
 import { TbBrandNextjs } from "react-icons/tb";
 import { IoLogoJavascript } from "react-icons/io5";
 import {
+  SiTypescript,
   SiMui,
   SiTailwindcss,
   SiExpress,
@@ -30,7 +31,7 @@ import AppearingMotion from "../generic/AppearingMotion";
 const skillLogos = {
   React: <FaReact />,
   NextJs: <TbBrandNextjs />,
-  JavaScript: <IoLogoJavascript />,
+  TypeScript: <SiTypescript />,
   CSS: <FaCss3Alt />,
   HTML: <FaHtml5 />,
   "Material UI": <SiMui />,
@@ -43,6 +44,15 @@ const skillLogos = {
 };
 
 const projects = [
+  {
+    name: "InnerClover",
+    description:
+      "A place to connect yourself from past to future. Try leaving a message for tomorrow of you! These little dots will connect you of each day.",
+    tools: ["React", "NextJs", "TypeScript", "Material UI", "Supabase"],
+    file: "/innerclover_recording.mp4",
+    link: "https://innerclover.vercel.app/inspiration",
+    gitLink: "https://github.com/MINJI9901/Innerclover",
+  },
   {
     name: "Expenser",
     description:
@@ -73,37 +83,6 @@ const projects = [
 export default function Projects() {
   const { palette } = useTheme(theme);
   const { Projects } = useContext(RefContext);
-
-  //   const rabbitMoving = () => {
-  //     const projectContainer = document.querySelector("#project-container");
-  //     const rabbitImg = rabbit.current;
-
-  //     const moveRabbit = () => {
-  //       const rabbitRect = rabbitImg.getBoundingClientRect();
-  //       const projectRect = projectContainer.getBoundingClientRect();
-  //       console.log("rabbit: ", rabbitRect);
-  //       console.log("project: ", projectRect);
-  //       console.log(rabbitRect.left < projectRect.right);
-  //       //   if (rabbitRect.right < projectRect.right) {
-  //       //     rabbitImg.style.left = `${rabbitRect.left - 5}px`;
-  //       //     console.log("left: ", rabbitImg.style.left);
-  //       //   } else if (rabbitRect.bottom > projectContainer.bottom) {
-  //       //     rabbitImg.style.transform = "rotate(90deg)";
-  //       //     rabbitImg.style.bottom = `${rabbitRect.bottom + 100}px`;
-  //       //   }
-
-  //       if (rabbitRect.right < projectRect.right) {
-  //         // Move rabbit to the right
-  //         rabbitImg.style.left = `${rabbitRect.left + 0.0001}px`;
-  //       } else if (rabbitRect.bottom < projectContainer.bottom) {
-  //         // Rotate and move down when reaching the right edge
-  //         rabbitImg.style.transform = "rotate(90deg)";
-  //         rabbitImg.style.top = `${rabbitRect.top + 0.001}px`;
-  //       }
-  //     };
-
-  //     setInterval(moveRabbit, 1000);
-  //   };
 
   //   useEffect(() => {
   //     rabbitMoving();
