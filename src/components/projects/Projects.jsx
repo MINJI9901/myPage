@@ -49,7 +49,7 @@ const projects = [
     description:
       "A place to connect yourself from past to future. Try leaving a message for tomorrow of you! These little dots will connect you of each day.",
     tools: ["React", "NextJs", "TypeScript", "Material UI", "Supabase"],
-    // file: "/Innerclover__recording.mp4",
+    file: "/Innerclover_recording.mp4",
     link: "https://innerclover.vercel.app/inspiration",
     gitLink: "https://github.com/MINJI9901/Innerclover",
   },
