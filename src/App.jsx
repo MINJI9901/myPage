@@ -72,6 +72,7 @@ function App() {
                 }}
               >
                 <source src="/colorPaint.mp4" type="video/mp4" />
+                <source src="/colorPaint.webm" type="video/webm" />
               </video>
               <Home />
               <Projects />

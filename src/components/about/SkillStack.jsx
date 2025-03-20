@@ -10,6 +10,7 @@ export default function SkillStack() {
     "React",
     "NextJs",
     "TypeScript",
+    "JavaScript",
     "CSS",
     "HTML",
     "Material UI",

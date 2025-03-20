@@ -50,6 +50,7 @@ const projects = [
       "A place to connect yourself from past to future. Try leaving a message for tomorrow of you! These little dots will connect you of each day.",
     tools: ["React", "NextJs", "TypeScript", "Material UI", "Supabase"],
     file: "/Innerclover_recording.mp4",
+    webmFile: "/Innerclover_recording.webm",
     link: "https://innerclover.vercel.app/inspiration",
     gitLink: "https://github.com/MINJI9901/Innerclover",
   },
@@ -66,6 +67,7 @@ const projects = [
       "Supabase",
     ],
     file: "/expenser_recording.mp4",
+    webmFile: "/expenser_recording.webm",
     link: "https://expense-tracker-puce-mu.vercel.app/",
     gitLink: "https://github.com/MINJI9901/ExpenseTracker",
   },
@@ -126,7 +128,7 @@ export default function Projects() {
                     loop
                     muted
                     playsinline
-                    // controls
+                    controls
                     // poster="/expense_screenshot.png"
                     style={{
                       width: "100%",
@@ -135,6 +137,7 @@ export default function Projects() {
                     }}
                   >
                     <source src={project.file} type="video/mp4" />
+                    <source src={project.webmFile} type="video/webm" />
                   </video>
                 ) : (
                   <img
