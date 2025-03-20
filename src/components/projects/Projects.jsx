@@ -128,7 +128,6 @@ export default function Projects() {
                     loop
                     muted
                     playsInline
-                    controls
                     // poster="/expense_screenshot.png"
                     style={{
                       width: "100%",
