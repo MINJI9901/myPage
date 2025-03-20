@@ -27,7 +27,13 @@ function App() {
     sections.forEach((section) => {
       const top = section.offsetTop - 300;
       const height = section.clientHeight;
-      if (window.scrollY > top && window.scrollY < top + height) {
+      // console.log("top: ", top, "height: ", height);
+      // console.log("scroll Y: ", window.scrollY);
+      if (
+        top !== -300 &&
+        window.scrollY > top &&
+        window.scrollY < top + height
+      ) {
         setCurrentSection(section);
       }
     });
@@ -59,7 +65,7 @@ function App() {
                 autoPlay
                 loop
                 muted
-                playsinline
+                playsInline
                 style={{
                   width: "100%",
                   height: "100vh",

@@ -51,7 +51,7 @@ const projects = [
     tools: ["React", "NextJs", "TypeScript", "Material UI", "Supabase"],
     file: "/Innerclover_recording.mp4",
     webmFile: "/Innerclover_recording.webm",
-    link: "https://innerclover.vercel.app/inspiration",
+    link: "https://innerclover.vercel.app",
     gitLink: "https://github.com/MINJI9901/Innerclover",
   },
   {
