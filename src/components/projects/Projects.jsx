@@ -127,7 +127,7 @@ export default function Projects() {
                     autoPlay
                     loop
                     muted
-                    playsinline
+                    playsInline
                     controls
                     // poster="/expense_screenshot.png"
                     style={{
