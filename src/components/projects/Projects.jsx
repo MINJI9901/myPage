@@ -49,6 +49,7 @@ const projects = [
     description:
       "A place to connect yourself from past to future. Try leaving a message for tomorrow of you! These little dots will connect you of each day.",
     tools: ["React", "NextJs", "TypeScript", "Material UI", "Supabase"],
+    poster: "/Innerclover_screenshot.png",
     file: "/Innerclover_recording.mp4",
     webmFile: "/Innerclover_recording.webm",
     link: "https://innerclover.vercel.app",
@@ -66,6 +67,7 @@ const projects = [
       "MongoDB",
       "Supabase",
     ],
+    poster: "/expense_screenshot.png",
     file: "/expenser_recording.mp4",
     webmFile: "/expenser_recording.webm",
     link: "https://expense-tracker-puce-mu.vercel.app/",
@@ -108,7 +110,9 @@ export default function Projects() {
               id="project-container"
               key={project.name}
               sx={{
-                backgroundColor: palette.common.lightGray,
+                // backgroundColor: palette.grey[100],
+                border: "1px solid",
+                borderColor: palette.primary.light,
                 borderRadius: "0.3rem",
                 padding: "2rem",
                 margin: "2rem 0",
@@ -128,7 +132,8 @@ export default function Projects() {
                     loop
                     muted
                     playsInline
-                    // poster="/expense_screenshot.png"
+                    controls
+                    poster={project.poster}
                     style={{
                       width: "100%",
                       height: "100%",
