@@ -5,6 +5,7 @@ import { Box, Button, Grid2, Typography, Link, useTheme } from "@mui/material";
 import theme from "../../theme/theme";
 // CONTEXT
 import { RefContext } from "../../context/RefContext";
+import { LanguageContext } from "../../context/LanguageContext";
 // COMPONENTS
 import LogoGrid from "../generic/LogoGrid";
 // REACT-ICONS
@@ -46,8 +47,10 @@ const skillLogos = {
 const projects = [
   {
     name: "InnerClover",
-    description:
-      "A place to connect yourself from past to future. Try leaving a message for tomorrow of you! These little dots will connect you of each day.",
+    description: {
+      en: "A place to connect yourself from past to future. Try leaving a message for tomorrow of you! These little dots will connect you of each day.",
+      kr: "내일의 나에게 전하고 싶은 말이 있으신가요? 내일의 내가 알았으면 하는 이야기를 하루 하나씩 적어보세요! 잊지 않았으면 하는 메세지를 꾸준히 전하다보면 분명 더 나은 내가 되어있을 거예요. 과거의 나와 미래의 나를 연결할 수 있습니다. 미래의 나에게 희망과 힘을 주세요.",
+    },
     tools: ["React", "NextJs", "TypeScript", "Material UI", "Supabase"],
     poster: "/Innerclover_screenshot.png",
     file: "/Innerclover_recording.mp4",
@@ -57,8 +60,10 @@ const projects = [
   },
   {
     name: "Expenser",
-    description:
-      "You want to manage your money flow in an efficient way? Here, you can manage financial input/output together! We allow you see how you are using your money at a glance.",
+    description: {
+      en: "You want to manage your money flow in an efficient way? Here, you can manage financial input/output together! We allow you see how you are using your money at a glance.",
+      kr: "비용을 소득과 비교하여 효율적으로 관리할 수 있습니다. 월별로 지출 계획을 세우고 그에 기반하여 실지출을 관리해보시는 건 어떠실까요? 예상 소득 또한 월별로 기입하여, 실소득 및 지출과 비교하여 관리하세요!",
+    },
     tools: [
       "React",
       "NextJs",
@@ -87,10 +92,7 @@ const projects = [
 export default function Projects() {
   const { palette } = useTheme(theme);
   const { Projects } = useContext(RefContext);
-
-  //   useEffect(() => {
-  //     rabbitMoving();
-  //   }, []);
+  const { language } = useContext(LanguageContext);
 
   return (
     <AppearingMotion>
@@ -158,8 +160,13 @@ export default function Projects() {
                 <Typography fontWeight={700} my={"1rem"}>
                   {project.name}
                 </Typography>
-                <Typography textAlign={"left"}>
-                  {project.description}
+                <Typography
+                  textAlign={"left"}
+                  height={"8rem"}
+                  sx={{ overflowY: "auto" }}
+                  className="hide-scrollbar"
+                >
+                  {project.description[language]}
                 </Typography>
               </Box>
               <Box m={"1rem"} fontSize={"1.5rem"}>
@@ -183,7 +190,7 @@ export default function Projects() {
                     },
                   }}
                 >
-                  Try Me
+                  {{ en: "Try Me", kr: "테스트" }[language]}
                 </Button>
                 <Button
                   href={project.gitLink}
@@ -198,7 +205,7 @@ export default function Projects() {
                     },
                   }}
                 >
-                  Code
+                  {{ en: "Code", kr: "코드" }[language]}
                 </Button>
               </Box>
             </Grid2>

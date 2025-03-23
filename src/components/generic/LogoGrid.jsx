@@ -55,7 +55,6 @@ export default function LogoGrid({ logoNames, displayName, color }) {
         <LightTooltip key={idx} title={name}>
           <Grid2
             size={{ xs: 4, lg: 3 }}
-            key={idx}
             color={color ? color : "black"}
             display={"inline-block"}
           >

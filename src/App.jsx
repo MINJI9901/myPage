@@ -7,6 +7,7 @@ import ThemeProvider from "./theme/ThemeProvider";
 
 // CONTEXT
 import { RefContext } from "./context/RefContext";
+import { LanguageProvider } from "./context/LanguageContext";
 
 // MY COMPONENTS
 import NavBar from "./components/generic/NavBar";
@@ -51,45 +52,47 @@ function App() {
     <>
       <ThemeProvider>
         <NavBar />
-        <RefContext.Provider
-          value={{
-            Home: useRef(null),
-            Projects: useRef(null),
-            About: useRef(null),
-            Contact: useRef(null),
-          }}
-        >
-          <Grid2 container mx={"2rem 0"}>
-            <Grid2 size={{ xs: 12, md: 10 }}>
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  width: "100%",
-                  height: "100vh",
-                  objectFit: "cover",
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  zIndex: 0,
-                  opacity: 0.7,
-                }}
-              >
-                <source src="/colorPaint.mp4" type="video/mp4" />
-                <source src="/colorPaint.webm" type="video/webm" />
-              </video>
-              <Home />
-              <Projects />
-              <About />
-              <Contact />
+        <LanguageProvider>
+          <RefContext.Provider
+            value={{
+              Home: useRef(null),
+              Projects: useRef(null),
+              About: useRef(null),
+              Contact: useRef(null),
+            }}
+          >
+            <Grid2 container mx={"2rem 0"}>
+              <Grid2 size={{ xs: 12, md: 10 }}>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    width: "100%",
+                    height: "100vh",
+                    objectFit: "cover",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    zIndex: 0,
+                    opacity: 0.7,
+                  }}
+                >
+                  <source src="/colorPaint.mp4" type="video/mp4" />
+                  <source src="/colorPaint.webm" type="video/webm" />
+                </video>
+                <Home />
+                <Projects />
+                <About />
+                <Contact />
+              </Grid2>
+              <Grid2 size={2} display={{ xs: "none", md: "block" }}>
+                <InfoBar current={currentSection} />
+              </Grid2>
             </Grid2>
-            <Grid2 size={2} display={{ xs: "none", md: "block" }}>
-              <InfoBar current={currentSection} />
-            </Grid2>
-          </Grid2>
-        </RefContext.Provider>
+          </RefContext.Provider>
+        </LanguageProvider>
       </ThemeProvider>
     </>
   );
